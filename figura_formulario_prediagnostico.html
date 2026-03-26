@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figura — Formulario de Pre-Diagnóstico</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #0a0a0a;
+    --blanco: #f5f2ee;
+    --burdeos: #7a1f2e;
+    --burdeos-claro: #9c2d3f;
+    --tierra: #c4a882;
+    --gris: #1a1a1a;
+    --gris2: #222;
+    --gris3: #2e2e2e;
+    --gris-claro: #777;
+    --linea: #2a2a2a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 48px 40px 40px;
+    border-bottom: 1px solid var(--linea);
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .header-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300;
+    letter-spacing: 8px; text-transform: uppercase;
+    color: var(--blanco);
+  }
+  .header-doc {
+    font-size: 9px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--burdeos);
+    text-align: right;
+  }
+
+  /* INTRO */
+  .intro {
+    padding: 60px 40px 48px;
+    border-bottom: 1px solid var(--linea);
+    max-width: 720px;
+  }
+  .intro-eyebrow {
+    font-size: 9px; letter-spacing: 5px;
+    text-transform: uppercase; color: var(--burdeos);
+    margin-bottom: 20px;
+  }
+  .intro-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 300; line-height: 1.05;
+    color: var(--blanco); margin-bottom: 24px;
+  }
+  .intro-titulo em { font-style: italic; color: var(--tierra); }
+  .intro-texto {
+    font-size: 13px; color: #888; line-height: 1.8; max-width: 560px;
+  }
+  .intro-nota {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-left: 2px solid var(--burdeos);
+    font-size: 12px; color: #666; line-height: 1.6;
+  }
+
+  /* FORM */
+  .form-wrapper {
+    padding: 0 40px 80px;
+    max-width: 760px;
+  }
+
+  /* SECCIÓN */
+  .form-seccion {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--linea);
+  }
+  .seccion-header {
+    display: flex; align-items: baseline; gap: 20px;
+    margin-bottom: 36px;
+  }
+  .seccion-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px; font-weight: 300;
+    color: var(--burdeos); opacity: 0.3; line-height: 1;
+    flex-shrink: 0;
+  }
+  .seccion-info {}
+  .seccion-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300;
+    color: var(--blanco); margin-bottom: 4px;
+  }
+  .seccion-sub {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--tierra);
+  }
+
+  /* CAMPO */
+  .campo {
+    margin-bottom: 32px;
+  }
+  .campo-label {
+    font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gris-claro);
+    margin-bottom: 10px; display: block;
+  }
+  .campo-label span {
+    color: var(--burdeos); margin-left: 4px;
+  }
+  .campo-hint {
+    font-size: 11px; color: #555;
+    margin-bottom: 10px; font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    background: var(--gris);
+    border: 1px solid var(--linea);
+    border-bottom: 1px solid #333;
+    color: var(--blanco);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 16px 20px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--burdeos);
+    background: #1e1e1e;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: #444;
+  }
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a1f2e' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    padding-right: 48px;
+  }
+
+  select option { background: var(--gris); color: var(--blanco); }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.7;
+  }
+
+  /* RADIO / CHECKBOX CUSTOM */
+  .opciones {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .opciones.horizontal {
+    flex-direction: row; flex-wrap: wrap; gap: 8px;
+  }
+
+  .opcion {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 20px;
+    background: var(--gris);
+    border: 1px solid var(--linea);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .opcion:hover { border-color: #444; background: #1e1e1e; }
+  .opcion input { display: none; }
+  .opcion-dot {
+    width: 16px; height: 16px;
+    border: 1px solid #444;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .opcion-dot::after {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--burdeos);
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .opcion input:checked ~ .opcion-dot { border-color: var(--burdeos); }
+  .opcion input:checked ~ .opcion-dot::after { opacity: 1; }
+  .opcion input:checked ~ .opcion-texto { color: var(--blanco); }
+  .opcion.checked { border-color: var(--burdeos); background: rgba(122,31,46,0.08); }
+
+  .opcion-check {
+    width: 16px; height: 16px;
+    border: 1px solid #444;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; font-size: 10px; color: transparent;
+  }
+  .opcion input[type=checkbox]:checked ~ .opcion-check {
+    background: var(--burdeos); border-color: var(--burdeos); color: white;
+  }
+
+  .opcion-texto {
+    font-size: 13px; color: #888; line-height: 1.4; transition: color 0.15s;
+  }
+
+  /* ESCALA */
+  .escala {
+    display: flex; gap: 2px;
+  }
+  .escala-btn {
+    flex: 1; padding: 14px 8px;
+    background: var(--gris); border: 1px solid var(--linea);
+    color: #666; font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300;
+    text-align: center; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .escala-btn:hover { border-color: #444; color: var(--blanco); }
+  .escala-btn.activo { background: var(--burdeos); border-color: var(--burdeos); color: var(--blanco); }
+  .escala-labels {
+    display: flex; justify-content: space-between;
+    margin-top: 8px; padding: 0 4px;
+  }
+  .escala-label {
+    font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: #444;
+  }
+
+  /* CAMPO GRID 2 */
+  .campo-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+
+  /* SUBMIT */
+  .submit-section {
+    padding: 48px 0 0;
+  }
+  .submit-nota {
+    font-size: 12px; color: #555; margin-bottom: 28px;
+    line-height: 1.7; max-width: 520px;
+  }
+  .btn-submit {
+    width: 100%;
+    background: var(--burdeos);
+    border: none; color: var(--blanco);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    padding: 22px 40px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--burdeos-claro); }
+  .btn-firma {
+    margin-top: 16px; text-align: center;
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: #333;
+  }
+
+  /* CONFIRMACIÓN */
+  .confirmacion {
+    display: none;
+    padding: 80px 40px;
+    text-align: center;
+    max-width: 600px; margin: 0 auto;
+  }
+  .conf-icono {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px; color: var(--tierra);
+    margin-bottom: 32px;
+  }
+  .conf-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 300; font-style: italic;
+    color: var(--blanco); margin-bottom: 16px;
+  }
+  .conf-texto {
+    font-size: 13px; color: #888; line-height: 1.8;
+    margin-bottom: 32px;
+  }
+  .conf-firma {
+    font-size: 9px; letter-spacing: 4px;
+    text-transform: uppercase; color: #444;
+  }
+
+  /* PROGRESS */
+  .progress-bar {
+    position: fixed; top: 0; left: 0;
+    height: 2px; background: var(--burdeos);
+    width: 0%; transition: width 0.3s;
+    z-index: 100;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--linea);
+    padding: 32px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 300;
+    letter-spacing: 5px; text-transform: uppercase;
+  }
+  .footer-note {
+    font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: #333;
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 32px 24px 28px; }
+    .intro { padding: 40px 24px 36px; }
+    .form-wrapper { padding: 0 24px 60px; }
+    .campo-grid { grid-template-columns: 1fr; }
+    .opciones.horizontal { flex-direction: column; }
+    .header-doc { display: none; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-brand">Figura</div>
+  <div class="header-doc">Formulario de Pre-Diagnóstico<br>Confidencial</div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="intro-eyebrow">Auditoría de Imagen — Pre-Diagnóstico</div>
+  <div class="intro-titulo">Antes de<br>tu <em>sesión.</em></div>
+  <div class="intro-texto">Este formulario nos permite llegar a la sesión con un diagnóstico en marcha. Respondé con la mayor honestidad posible — no hay respuestas correctas o incorrectas. Cuanto más precisa sea la información, más útil será el análisis.</div>
+  <div class="intro-nota">⏱ Tiempo estimado: 10 a 15 minutos. Toda la información es estrictamente confidencial y se usa únicamente para preparar tu Auditoría.</div>
+</div>
+
+<!-- FORMULARIO -->
+<div class="form-wrapper">
+<form id="figuraForm" action="https://formspree.io/f/xkopnzra" method="POST">
+
+  <!-- SECCIÓN 1: DATOS PERSONALES -->
+  <div class="form-seccion">
+    <div class="seccion-header">
+      <div class="seccion-num">01</div>
+      <div class="seccion-info">
+        <div class="seccion-titulo">Datos personales</div>
+        <div class="seccion-sub">Información básica</div>
+      </div>
+    </div>
+
+    <div class="campo-grid">
+      <div class="campo">
+        <label class="campo-label">Nombre completo <span>*</span></label>
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+      </div>
+      <div class="campo">
+        <label class="campo-label">Profesión / Cargo <span>*</span></label>
+        <input type="text" name="profesion" placeholder="Ej: Directora de Marketing" required>
+      </div>
+    </div>
+
+    <div class="campo-grid">
+      <div class="campo">
+        <label class="campo-label">Email <span>*</span></label>
+        <input type="email" name="email" placeholder="tu@email.com" required>
+      </div>
+      <div class="campo">
+        <label class="campo-label">WhatsApp</label>
+        <input type="tel" name="whatsapp" placeholder="+54 11 ...">
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">Modalidad de auditoría <span>*</span></label>
+      <select name="modalidad" required>
+        <option value="" disabled selected>Seleccioná una opción</option>
+        <option value="online">Online — USD 300</option>
+        <option value="presencial">Presencial Buenos Aires — USD 450</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: TRAYECTORIA -->
+  <div class="form-seccion">
+    <div class="seccion-header">
+      <div class="seccion-num">02</div>
+      <div class="seccion-info">
+        <div class="seccion-titulo">Trayectoria profesional</div>
+        <div class="seccion-sub">Tu contexto actual</div>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿En qué industria o sector trabajás? <span>*</span></label>
+      <input type="text" name="industria" placeholder="Ej: Consultoría, Salud, Legal, Tecnología..." required>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cuántos años de experiencia profesional tenés? <span>*</span></label>
+      <div class="opciones horizontal">
+        <label class="opcion">
+          <input type="radio" name="anos_exp" value="menos5">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">Menos de 5</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="anos_exp" value="5a10">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">5 a 10 años</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="anos_exp" value="10a20">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">10 a 20 años</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="anos_exp" value="mas20">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">Más de 20</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">Describí brevemente tu situación profesional actual <span>*</span></label>
+      <div class="campo-hint">¿Sos empleada en relación de dependencia, freelance, fundadora, directiva? ¿En qué momento de tu carrera estás?</div>
+      <textarea name="situacion_actual" rows="4" placeholder="Describí tu situación con la mayor precisión posible..." required></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cuál es tu principal objetivo profesional en los próximos 12 meses? <span>*</span></label>
+      <textarea name="objetivo" rows="3" placeholder="Ej: conseguir clientes de mayor nivel, ascender, lanzar mi consultora..." required></textarea>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: IMAGEN ACTUAL -->
+  <div class="form-seccion">
+    <div class="seccion-header">
+      <div class="seccion-num">03</div>
+      <div class="seccion-info">
+        <div class="seccion-titulo">Tu imagen actual</div>
+        <div class="seccion-sub">Diagnóstico propio</div>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cómo describirías tu imagen profesional actual? <span>*</span></label>
+      <div class="campo-hint">Sin filtros. Lo que vés cuando te mirás antes de salir a una reunión importante.</div>
+      <textarea name="imagen_actual" rows="4" placeholder="Sé honesta con vos misma..." required></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cómo creés que te perciben los demás profesionalmente? <span>*</span></label>
+      <div class="campo-hint">No cómo querés que te vean — cómo creés que realmente te ven.</div>
+      <textarea name="percepcion_externa" rows="4" placeholder="Describí la imagen que pensás que proyectás..." required></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Existe una diferencia entre cómo te perciben y cómo querés ser percibida? <span>*</span></label>
+      <div class="opciones">
+        <label class="opcion">
+          <input type="radio" name="brecha" value="si_grande">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">Sí, hay una brecha grande — es el motivo principal por el que estoy acá</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="brecha" value="si_parcial">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">Sí, en algunos contextos o aspectos específicos</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="brecha" value="no_se">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">No sé — no tengo claridad sobre cómo me perciben</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="brecha" value="no">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">No, creo que hay coherencia</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">Del 1 al 5, ¿cuánta atención le prestás actualmente a tu imagen profesional? <span>*</span></label>
+      <div class="escala" id="escala-imagen">
+        <div class="escala-btn" onclick="setEscala('escala-imagen', 1, 'atencion_imagen')">1</div>
+        <div class="escala-btn" onclick="setEscala('escala-imagen', 2, 'atencion_imagen')">2</div>
+        <div class="escala-btn" onclick="setEscala('escala-imagen', 3, 'atencion_imagen')">3</div>
+        <div class="escala-btn" onclick="setEscala('escala-imagen', 4, 'atencion_imagen')">4</div>
+        <div class="escala-btn" onclick="setEscala('escala-imagen', 5, 'atencion_imagen')">5</div>
+      </div>
+      <div class="escala-labels">
+        <span class="escala-label">Ninguna</span>
+        <span class="escala-label">Mucha</span>
+      </div>
+      <input type="hidden" name="atencion_imagen" id="val-atencion_imagen">
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: VESTIMENTA -->
+  <div class="form-seccion">
+    <div class="seccion-header">
+      <div class="seccion-num">04</div>
+      <div class="seccion-info">
+        <div class="seccion-titulo">Vestimenta & estilo</div>
+        <div class="seccion-sub">La dimensión visible</div>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cómo describirías tu estilo de vestimenta habitual? <span>*</span></label>
+      <div class="opciones">
+        <label class="opcion">
+          <input type="radio" name="estilo" value="formal">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">Formal — trajes, blazers, colores neutros</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="estilo" value="business_casual">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">Business casual — mezcla de formal y relajado</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="estilo" value="casual">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">Casual — cómodo, sin mucho protocolo</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="estilo" value="inconsistente">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">Inconsistente — varía mucho según el día o el humor</span>
+        </label>
+        <label class="opcion">
+          <input type="radio" name="estilo" value="no_se">
+          <div class="opcion-dot"></div>
+          <span class="opcion-texto">No sé cómo definirlo</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cuál es tu mayor dificultad con la vestimenta? <span>*</span></label>
+      <div class="opciones">
+        <label class="opcion">
+          <input type="checkbox" name="dif_vestimenta" value="no_se_que_ponerse">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">No sé qué ponerme para cada contexto</span>
+        </label>
+        <label class="opcion">
+          <input type="checkbox" name="dif_vestimenta" value="sin_identidad">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">Tengo ropa pero no tengo identidad</span>
+        </label>
+        <label class="opcion">
+          <input type="checkbox" name="dif_vestimenta" value="no_refleja">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">Lo que uso no refleja mi nivel profesional</span>
+        </label>
+        <label class="opcion">
+          <input type="checkbox" name="dif_vestimenta" value="inversion">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">No sé en qué invertir o qué priorizar</span>
+        </label>
+        <label class="opcion">
+          <input type="checkbox" name="dif_vestimenta" value="confort">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">Priorizo la comodidad sobre la imagen</span>
+        </label>
+        <label class="opcion">
+          <input type="checkbox" name="dif_vestimenta" value="sin_dificultad">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">No tengo dificultades con la vestimenta</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5: PRESENCIA DIGITAL -->
+  <div class="form-seccion">
+    <div class="seccion-header">
+      <div class="seccion-num">05</div>
+      <div class="seccion-info">
+        <div class="seccion-titulo">Presencia digital</div>
+        <div class="seccion-sub">Tu imagen online</div>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿En qué plataformas tenés presencia profesional? <span>*</span></label>
+      <div class="opciones horizontal">
+        <label class="opcion">
+          <input type="checkbox" name="plataformas" value="linkedin">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">LinkedIn</span>
+        </label>
+        <label class="opcion">
+          <input type="checkbox" name="plataformas" value="instagram">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">Instagram</span>
+        </label>
+        <label class="opcion">
+          <input type="checkbox" name="plataformas" value="web">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">Sitio web</span>
+        </label>
+        <label class="opcion">
+          <input type="checkbox" name="plataformas" value="ninguna">
+          <div class="opcion-check">✓</div>
+          <span class="opcion-texto">Ninguna</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">Link de LinkedIn (si tenés)</label>
+      <input type="text" name="linkedin" placeholder="linkedin.com/in/tu-perfil">
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cómo evaluás tu presencia digital actual? <span>*</span></label>
+      <div class="escala" id="escala-digital">
+        <div class="escala-btn" onclick="setEscala('escala-digital', 1, 'presencia_digital')">1</div>
+        <div class="escala-btn" onclick="setEscala('escala-digital', 2, 'presencia_digital')">2</div>
+        <div class="escala-btn" onclick="setEscala('escala-digital', 3, 'presencia_digital')">3</div>
+        <div class="escala-btn" onclick="setEscala('escala-digital', 4, 'presencia_digital')">4</div>
+        <div class="escala-btn" onclick="setEscala('escala-digital', 5, 'presencia_digital')">5</div>
+      </div>
+      <div class="escala-labels">
+        <span class="escala-label">Muy débil</span>
+        <span class="escala-label">Muy sólida</span>
+      </div>
+      <input type="hidden" name="presencia_digital" id="val-presencia_digital">
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6: CONTEXTO DE LA CONSULTA -->
+  <div class="form-seccion">
+    <div class="seccion-header">
+      <div class="seccion-num">06</div>
+      <div class="seccion-info">
+        <div class="seccion-titulo">Por qué ahora</div>
+        <div class="seccion-sub">El momento de la consulta</div>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Qué te trajo a buscar esta Auditoría en este momento? <span>*</span></label>
+      <div class="campo-hint">¿Hubo algún evento, situación o decisión que lo desencadenó?</div>
+      <textarea name="motivo" rows="4" placeholder="Contame qué pasó o qué estás sintiendo..." required></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Cuál sería el resultado ideal para vos después de esta Auditoría? <span>*</span></label>
+      <div class="campo-hint">No en términos de imagen — en términos de lo que cambia en tu vida o carrera.</div>
+      <textarea name="resultado_ideal" rows="4" placeholder="¿Qué querés que sea diferente después?" required></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Hay algo específico que querés que analicemos sí o sí en la sesión?</label>
+      <textarea name="especifico" rows="3" placeholder="Algo puntual que te preocupa, una situación concreta, una duda específica..."></textarea>
+    </div>
+
+    <div class="campo">
+      <label class="campo-label">¿Algo más que quieras contarnos antes de la sesión?</label>
+      <textarea name="adicional" rows="3" placeholder="Cualquier cosa que creas relevante para el diagnóstico..."></textarea>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-section">
+    <div class="submit-nota">Al enviar este formulario confirmás que la información es verídica y que será tratada con absoluta confidencialidad. Recibirás una confirmación por WhatsApp o email dentro de las 24 horas.</div>
+    <button type="submit" class="btn-submit">Enviar formulario</button>
+    <div class="btn-firma">Figura — Consultoría de Marca Personal</div>
+  </div>
+
+</form>
+</div>
+
+<!-- CONFIRMACIÓN -->
+<div class="confirmacion" id="confirmacion">
+  <div class="conf-icono">✦</div>
+  <div class="conf-titulo">Formulario recibido.</div>
+  <div class="conf-texto">Gracias por tomarte el tiempo de responder con detalle. Con esta información vamos a llegar a la sesión con un diagnóstico en marcha.<br><br>Vas a recibir confirmación por WhatsApp o email dentro de las 24 horas.</div>
+  <div class="conf-firma">— Figura, Consultoría de Marca Personal</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Figura</div>
+  <div class="footer-note">Formulario confidencial — 2026</div>
+</footer>
+
+<script>
+  // Progress bar
+  function updateProgress() {
+    const form = document.getElementById('figuraForm');
+    if (!form) return;
+    const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+    let filled = 0;
+    inputs.forEach(inp => {
+      if (inp.type === 'radio') {
+        const group = form.querySelectorAll(`input[name="${inp.name}"]:checked`);
+        if (group.length > 0) filled++;
+      } else if (inp.value.trim() !== '') filled++;
+    });
+    const pct = Math.min((filled / inputs.length) * 100, 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+  }
+
+  document.addEventListener('input', updateProgress);
+  document.addEventListener('change', updateProgress);
+
+  // Escalas
+  function setEscala(escalaId, valor, fieldName) {
+    const btns = document.querySelectorAll(`#${escalaId} .escala-btn`);
+    btns.forEach((btn, i) => {
+      btn.classList.toggle('activo', i < valor);
+    });
+    document.getElementById('val-' + fieldName).value = valor;
+    updateProgress();
+  }
+
+  // Opciones highlight on check
+  document.querySelectorAll('.opcion input').forEach(inp => {
+    inp.addEventListener('change', function() {
+      if (this.type === 'radio') {
+        document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+          r.closest('.opcion').classList.toggle('checked', r.checked);
+        });
+      } else {
+        this.closest('.opcion').classList.toggle('checked', this.checked);
+      }
+    });
+  });
+
+  // Submit
+  document.getElementById('figuraForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/xkopnzra', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.querySelector('.form-wrapper').style.display = 'none';
+        document.querySelector('.intro').style.display = 'none';
+        document.getElementById('confirmacion').style.display = 'block';
+        document.getElementById('progressBar').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.textContent = 'Error al enviar. Intentá de nuevo.';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      btn.textContent = 'Error de conexión. Intentá de nuevo.';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
